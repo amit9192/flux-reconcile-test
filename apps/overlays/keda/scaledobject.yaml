@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: podinfo
+spec:
+  scaleTargetRef:
+    name: podinfo
+  minReplicaCount: 2
+  maxReplicaCount: 4
+  triggers:
+  - type: cron
+    metadata:
+      timezone: UTC
+      start: 0 0 * * *
+      end: 1 0 * * *
+      desiredReplicas: "3"
+
