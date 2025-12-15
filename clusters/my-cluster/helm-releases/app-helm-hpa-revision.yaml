@@ -5,10 +5,10 @@ metadata:
   namespace: default
 spec:
   interval: 1m
-  reconcileStrategy: Revision
   chart:
     spec:
       chart: podinfo
+      reconcileStrategy: Revision
       version: "6.4.0"
       sourceRef:
         kind: HelmRepository
