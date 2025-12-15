@@ -7,6 +7,10 @@ spec:
   interval: 1m
   driftDetection:
     mode: enabled
+    ignore:
+      - paths: ["/spec/metrics/0/resource/target/averageUtilization"]
+        target:
+          kind: HorizontalPodAutoscaler
   chart:
     spec:
       chart: podinfo
@@ -20,4 +24,3 @@ spec:
       enabled: true
       maxReplicas: 4
       cpu: 50
-
