@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: podinfo
-      version: "6.0.0"
+      version: "6.4.0"
       sourceRef:
         kind: HelmRepository
         name: podinfo
@@ -16,33 +16,6 @@ spec:
   values:
     hpa:
       enabled: false
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              kind: Deployment
-              name: podinfo-keda
-            patch: |-
-              - op: add
-                path: /metadata/labels/scaled-object
-                value: "true"
-          - patch: |-
-              apiVersion: keda.sh/v1alpha1
-              kind: ScaledObject
-              metadata:
-                name: podinfo-keda
-              spec:
-                scaleTargetRef:
-                  name: podinfo-keda
-                  kind: Deployment
-                  apiVersion: apps/v1
-                minReplicaCount: 2
-                maxReplicaCount: 4
-                triggers:
-                - type: cron
-                  metadata:
-                    timezone: UTC
-                    start: 0 0 * * *
-                    end: 1 0 * * *
-                    desiredReplicas: "3"
-
+    # Add label so we can identify this deployment
+    podLabels:
+      scaled-object: "true"
