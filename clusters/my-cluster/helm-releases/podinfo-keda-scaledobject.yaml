@@ -12,6 +12,6 @@ spec:
   maxReplicaCount: 4
   triggers:
   - type: cpu
+    metricType: Utilization
     metadata:
-      metricType: Utilization
       value: "50"
