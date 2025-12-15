@@ -4,7 +4,7 @@ metadata:
   name: podinfo
 spec:
   scaleTargetRef:
-    name: podinfo
+    name: keda-podinfo
   minReplicaCount: 2
   maxReplicaCount: 4
   triggers:
