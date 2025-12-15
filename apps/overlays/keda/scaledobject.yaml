@@ -8,10 +8,7 @@ spec:
   minReplicaCount: 2
   maxReplicaCount: 4
   triggers:
-  - type: cron
+  - type: cpu
     metadata:
-      timezone: UTC
-      start: 0 0 * * *
-      end: 1 0 * * *
-      desiredReplicas: "3"
-
+      type: Utilization
+      value: "50"
