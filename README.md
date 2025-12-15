@@ -36,6 +36,20 @@ This repository contains a setup to test FluxCD reconciliation with HelmReleases
     kubectl apply -f clusters/my-cluster/kustomize/
     ```
 
+## Accessing the UI (Weave GitOps)
+
+A Weave GitOps dashboard is deployed to help visualize the reconciliation process.
+
+1.  **Port Forward**:
+    ```bash
+    kubectl port-forward svc/weave-gitops -n flux-system 9001:9001
+    ```
+
+2.  **Login**:
+    *   **URL**: [http://localhost:9001](http://localhost:9001)
+    *   **Username**: `admin`
+    *   **Password**: `flux`
+
 ## Experimentation
 
 The goal is to observe how Flux reconciles changes made manually via `kubectl` vs. the state in Git.
@@ -67,4 +81,3 @@ flux get helmreleases --watch
 flux reconcile kustomization podinfo-kustomize-hpa --with-source
 flux reconcile helmrelease podinfo-hpa
 ```
-
