@@ -5,13 +5,7 @@ metadata:
   namespace: default
 spec:
   interval: 1m
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
-      strategy: rollback
+  reconcileStrategy: Revision
   chart:
     spec:
       chart: podinfo
@@ -25,4 +19,3 @@ spec:
       enabled: true
       maxReplicas: 4
       cpu: 50
-
